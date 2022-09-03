@@ -1,4 +1,5 @@
-﻿using SQL_7;
+﻿using DBSettings.DB;
+using SQL_7;
 using Dapper;
 using System.Data.SqlClient;
 

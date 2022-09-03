@@ -1,4 +1,4 @@
-﻿namespace SQL_7
+﻿namespace DBSettings.DB
 {
     public sealed class Singleton
     {

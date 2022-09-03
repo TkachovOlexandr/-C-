@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Text.Json;
 
-namespace SQL_7
+namespace DBSettings.DB
 {
     internal class SingletonConnection
     {
@@ -21,9 +21,14 @@ namespace SQL_7
 
         public SingletonConnection()
         {
+            if (!File.Exists("Connection.JSON"))
+            { 
+                Console.WriteLine("Connection string file doesn't exists. Therefore, the program must terminate its execution.");
+                Environment.Exit(0);
+            }
             StringConnection stringConnection = new StringConnection();
-            this.Connection = Singleton.GetInstance(JsonSerializer.Deserialize<StringConnection>(File.ReadAllText("Connection.JSON")).ConnectionString);
-            this.SqlConnection = new SqlConnection(Connection.Connection);
+            Connection = Singleton.GetInstance(JsonSerializer.Deserialize<StringConnection>(File.ReadAllText("Connection.JSON")).ToString());
+            SqlConnection = new SqlConnection(Connection.Connection);
         }
     }
 }
